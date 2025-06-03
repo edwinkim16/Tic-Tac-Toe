@@ -2,18 +2,25 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
-function Square({value}) {
+function Square({value, onSquareClick}) {
   
-  return <button className="square" >{value}</button>;
+  return <button className="square" onClick={onSquareClick} >{value}</button>;
 }
 
 
 function App() {
   const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick() {
+    const nextSquares = squares.slice();
+    nextSquares[0] = "X";
+    setSquares(nextSquares);
+  }
+
   return (
     <div>
       <div className="board-row">
-       <Square value={squares[0]} />
+       <Square value={squares[0]} onSquareClick={handleClick} />
         <Square value={squares[1]} />
         <Square value={squares[2]} />
       </div>
